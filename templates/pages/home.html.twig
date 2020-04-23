@@ -5,5 +5,23 @@
     <h1>Mon Agence </h1>
     <p>voila notre application web ! </p>
 </div>
+<div class="container">
+    <h2>Les derniers biens </h2>
+    <div class="row flex">
+        {% for property in properties %}
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="/bien/{{ property.slug }}/{{ property.id }}">{{ property.title }}</a>
+                    </h5>
+                    <p class="card-text">{{ property.city }} ({{ property.postalCode }}))</p>
+                    <div class="text-primary" style="font-weight:bold; font-size:2rem;">{{ property.price | number_format(0, '', ' ')}} dt</div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock %}
