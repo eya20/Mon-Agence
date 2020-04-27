@@ -9,6 +9,19 @@ property:
     controller: App\Controller\PropertyController::show
     requirements:
         page: '[a-z0-9\-]*'
+admin_property:
+    path: /admin
+    controller: App\Controller\Admin\AdminPropertyController::index
+admin_porperty_delete:
+    path: /admin/property/{id}
+    controller: App\Controller\Admin\AdminPropertyController::delete
+    methods: DELETE
+admin_property_create:
+    path: /admin/property/new
+    controller: App\Controller\Admin\AdminPropertyController::new
+admin_porperty_edit:
+    path: /admin/property/edit/{id}
+    controller: App\Controller\Admin\AdminPropertyController::edit
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
