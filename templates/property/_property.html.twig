@@ -1,0 +1,9 @@
+<div class="card mb-4">
+    <div class="card body" style="padding-top: 8px; padding-left: 8px;">
+        <h5 class="card-title">
+            <a href="/bien/{{ property.slug }}/{{ property.id}}">{{ property.title }}</a>
+        </h5>
+        <p class="card-text"> {{property.city}} {{ property.postalCode }}</p>
+        <div class="text-primary" style="font-weight:bold; font-size:2rem;">{{ property.price | number_format(0, '', ' ')}} dt</div>
+    </div>
+</div>

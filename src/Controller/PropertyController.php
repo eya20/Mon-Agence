@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\PropertyRepository;
 use App\Entity\Property;
@@ -28,10 +30,14 @@ class PropertyController extends AbstractController {
         $this->em = $em;
     }
 
-    public function index(): Response
+    public function index(PaginatorInterface $paginator, Request $request): Response
     {
-        
-        return $this->render('property/index.html.twig', ['current_menu'=> 'properties']);
+        $properties =$paginator->paginate(
+            $this->repository->findAllVisibleQuery(), /* query NOT result */
+            $request->query->getInt('page', 1),
+            12
+        );
+        return $this->render('property/index.html.twig', ['current_menu'=> 'properties', 'properties'=> $properties]);
     }
 
 
